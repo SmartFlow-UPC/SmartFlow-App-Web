@@ -65,7 +65,7 @@ export default {
 <template>
   <pv-toast/>
   <pv-confirm-dialog/>
-  <h3>Manage {{ title.plural }}</h3>
+  <h3>Administrador de {{ title.plural }}</h3>
   <!-- Toolbar Section -->
   <pv-toolbar class="mb-4">
     <template #start>

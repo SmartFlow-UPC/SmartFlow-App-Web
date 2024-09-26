@@ -15,39 +15,43 @@ export default {
     }
   },
   methods: {
-    resetForm() {
-      this.submitted = false;
-      this.item = {}; // Limpiar los datos del formulario
+    getSeverity(status) {
+      switch (status) {
+        case 'Alto':
+          return 'success';
+        case 'Bajo':
+          return 'info';
+        default:
+          return null;
+      }
     },
     canceledEventHandler() {
-      this.resetForm();
       this.$emit('canceled');
     },
+
     savedEventHandler() {
+      console.log(this.item);
       this.submitted = true;
-      if (this.item.title) {
-        this.$emit('saved', this.item);
-      }
     }
   }
 }
 </script>
 
 <template>
-  <create-and-edit :entity="item" :visible="visible" entityName="Tutorial" @canceled="canceledEventHandler"
+  <create-and-edit :entity="item" :visible="visible" entityName="Registro" @canceled="canceledEventHandler"
                    @saved="savedEventHandler">
     <template #content>
       <div class="p-fluid">
         <div class="field mt-5">
           <pv-float-label>
-            <label for="title">Pedido</label>
+            <label for="title">Title</label>
             <pv-input-text id="title" v-model="item.title" :class="{'p-invalid': submitted && !item.title}"/>
             <small v-if="submitted && !item.title" class="p-invalid">Title is required.</small>
           </pv-float-label>
         </div>
         <div class="p-field mt-5">
           <pv-float-label>
-            <label for="description">Descripcion</label>
+            <label for="description">Description</label>
             <input id="description" v-model="item.description" class="p-inputtext p-component" type="text"/>
           </pv-float-label>
         </div>

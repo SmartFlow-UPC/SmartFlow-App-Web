@@ -2,8 +2,8 @@
   "tutorials": [
     {
       "id": 1,
-      "title": "Consumo Luz",
-      "description": "Marzo",
+      "title": "The Vue Tutorials",
+      "description": "The best tips and tutorials for Vue.",
       "published": true
     },
     {
@@ -43,6 +43,70 @@
       "description": "Sample",
       "published": false,
       "status": "Unpublished"
+    }
+  ],
+  "registros": [
+    {
+      "id": 1,
+      "title": "Consumo de agua enero",
+      "description": "Registro del consumo de agua en el mes de enero",
+      "alto": true,
+      "status": "Alto"
+    },
+    {
+      "id": 2,
+      "title": "Consumo de luz enero",
+      "description": "Registro del consumo de electricidad en el mes de enero",
+      "published": false
+    },
+    {
+      "id": 3,
+      "title": "Consumo mixto febrero",
+      "description": "Registro combinado de agua y luz en febrero",
+      "published": false,
+      "status": "Unpublished"
+    },
+    {
+      "id": 4,
+      "title": "Consumo de agua febrero",
+      "description": "Datos de consumo de agua para el mes de febrero",
+      "published": false
+    },
+    {
+      "id": 5,
+      "title": "Consumo de luz marzo",
+      "description": "Consumo de electricidad registrado en marzo",
+      "published": true
+    },
+    {
+      "id": 6,
+      "title": "Consumo mixto marzo",
+      "description": "Registro combinado de consumo de agua y electricidad en marzo",
+      "published": false
+    },
+    {
+      "id": 7,
+      "title": "Consumo de agua abril",
+      "description": "Consumo de agua registrado durante el mes de abril",
+      "published": true
+    },
+    {
+      "id": 8,
+      "title": "Consumo de luz abril",
+      "description": "Datos de consumo de luz en el mes de abril",
+      "published": false
+    },
+    {
+      "id": 9,
+      "title": "Consumo mixto mayo",
+      "description": "Registro combinado de agua y luz en mayo",
+      "published": true
+    },
+    {
+      "id": 10,
+      "title": "Consumo de agua mayo",
+      "description": "Registro de consumo de agua en el mes de mayo",
+      "published": false
     }
   ]
 }
