@@ -4,7 +4,8 @@ import http from "../../shared/services/http-common.js";
  * RegistrosApiService class
  * @description Service class for making HTTP requests to the API
  */
-export class RegistroApiService {
+
+export class RegistrosApiService {
     /**
      * Get all registros
      * @returns {Promise<AxiosResponse<any>>}
@@ -51,7 +52,7 @@ export class RegistroApiService {
     }
 
     /**
-     * Find registros by title
+     * Delete all registros that match the given title
      * @param title - item title to apply as criteria
      * @returns {Promise<AxiosResponse<any>>}
      */
