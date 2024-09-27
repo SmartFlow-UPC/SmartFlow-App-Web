@@ -12,7 +12,9 @@ export default {
         { label: 'Testimonios', to: '/testimonios' },
         { label: 'About', to: '/about' },
         //{ label: 'Tutorials', to: '/tutorials' },
-        { label: 'Registros', to: '/registros' }
+        { label: 'Registros', to: '/registros' },
+        { label: 'Produccion', to: '/produccion' },
+
       ]
     };
   },
