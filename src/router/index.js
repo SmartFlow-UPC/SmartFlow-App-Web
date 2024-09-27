@@ -4,14 +4,16 @@
  * @docs: https://router.vuejs.org/
  */
 
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue";
 import AboutComponent from "../public/pages/about.component.vue";
-// TutorialManagementComponent from "../learning/pages/tutorial-management.component.vue";
+// import TutorialManagementComponent from "../learning/pages/tutorial-management.component.vue";
 import CaracteristicasComponent from "../public/pages/caracteristicas.component.vue";
 import BeneficiosComponent from "../public/pages/beneficios.component.vue";
 import TestimoniosComponent from "../public/pages/testimonios.component.vue";
 import RegistroManagementComponent from "../registros/pages/registro-management.component.vue";
+import LoginComponent from "../components/Login.vue";
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -23,7 +25,9 @@ const router = createRouter({
         { path: '/beneficios', component: BeneficiosComponent, meta: { title: 'Beneficios' } },
         { path: '/testimonios', component: TestimoniosComponent, meta: { title: 'Testimonios' } },
         { path: '/about',   component: AboutComponent, meta: { title: 'About us' } },
-        { path: '/',        redirect: '/home' },
+        { path: '/home', component: HomeComponent, meta: { title: 'Home' } },
+        { path: '/login', component: LoginComponent, meta: { title: 'Login' } },
+        { path: '/', redirect: '/home' },
     ],
 });
 
