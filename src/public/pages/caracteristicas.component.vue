@@ -1,84 +1,120 @@
 <template>
-  <div class="features-container">
-    <h1 class="title">Características</h1>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <i class="fas fa-clock"></i>
-        <h3>Monitoreo en tiempo real</h3>
-        <p>Observa el consumo de recursos de tus dispositivos y máquinas en tiempo real.</p>
-      </div>
-
-      <div class="feature-card">
-        <i class="fas fa-chart-pie"></i>
-        <h3>Análisis detallado</h3>
-        <p>Obtén informes exhaustivos sobre el consumo y los costos asociados, ayudándote a optimizar el uso.</p>
-      </div>
-
-      <div class="feature-card">
-        <i class="fas fa-bell"></i>
-        <h3>Alertas inteligentes</h3>
-        <p>Recibe notificaciones instantáneas cuando se detecten anomalías o picos en el consumo.</p>
-      </div>
-    </div>
-  </div>
+  <section id="contact" class="contact-container">
+    <h2>¿Listo para optimizar tus recursos?</h2>
+    <p>Contáctanos hoy mismo para una demostración personalizada.</p>
+    <form @submit.prevent="handleSubmit">
+      <input
+          type="text"
+          v-model="form.name"
+          placeholder="Nombre"
+          required
+      >
+      <input
+          type="email"
+          v-model="form.email"
+          placeholder="Correo electrónico"
+          required
+      >
+      <input
+          type="tel"
+          v-model="form.phone"
+          placeholder="Teléfono"
+      >
+      <textarea
+          v-model="form.message"
+          placeholder="Mensaje"
+          required
+      ></textarea>
+      <button type="submit" class="cta-button">Enviar</button>
+    </form>
+  </section>
 </template>
 
-<script>
-export default {
-  name: "caracteristicas",
-  title: "Características"
+<script setup>
+import { reactive } from 'vue'
+
+const form = reactive({
+  name: '',
+  email: '',
+  phone: '',
+  message: ''
+})
+
+const handleSubmit = () => {
+  console.log('Formulario enviado:', form)
+  // Aquí iría la lógica para enviar el formulario
+  alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.')
+  // Resetear el formulario después del envío
+  form.name = ''
+  form.email = ''
+  form.phone = ''
+  form.message = ''
 }
 </script>
 
 <style scoped>
-.features-container {
+.contact-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 4rem 2rem;
 }
 
-.title {
+h2 {
   font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
   color: #333;
-  margin-bottom: 2rem;
 }
 
-.features-grid {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.feature-card {
-  background-color: #f5f5f5;
-  padding: 1.5rem;
-  border-radius: 8px;
-  width: 300px;
-  margin: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: scale(1.05);
-}
-
-.feature-card i {
-  font-size: 3rem;
-  color: #4caf50;
-}
-
-.feature-card h3 {
-  margin-top: 1rem;
+p {
   font-size: 1.5rem;
-  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #666;
 }
 
-.feature-card p {
-  color: #777;
-  margin-top: 0.5rem;
-  font-size: 1.1rem;
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+input, textarea {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.cta-button {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #007acc;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
 }
 </style>

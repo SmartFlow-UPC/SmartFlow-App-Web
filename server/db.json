@@ -108,5 +108,97 @@
       "description": "Registro de consumo de agua en el mes de mayo",
       "published": false
     }
+  ],
+  "alarmas": [
+    {
+      "id": 1,
+      "dispositivo": "Sensor 1 - Máquina CNC",
+      "tipo": "Electricidad",
+      "valor": 350,
+      "umbral": 300,
+      "fecha": "15-08-2024",
+      "estado": "No resuelta"
+    },
+    {
+      "id": 2,
+      "dispositivo": "Sensor 2 - Máquina de Corte",
+      "tipo": "Electricidad",
+      "valor": 500,
+      "umbral": 450,
+      "fecha": "11-06-2024",
+      "estado": "No resuelta"
+    },
+    {
+      "id": 3,
+      "dispositivo": "Sensor 3 - Lavadora Industrial",
+      "tipo": "Agua",
+      "valor": 120,
+      "umbral": 100,
+      "fecha": "24-09-2023",
+      "estado": "Resuelta"
+    },
+    {
+      "id": 4,
+      "dispositivo": "Sensor 4 - Máquina de Corte",
+      "tipo": "Electricidad",
+      "valor": 480,
+      "umbral": 450,
+      "fecha": "22-05-2024",
+      "estado": "No resuelta"
+    },
+    {
+      "id": 5,
+      "dispositivo": "Sensor 5 - Calentador Industrial",
+      "tipo": "Agua",
+      "valor": 140,
+      "umbral": 130,
+      "fecha": "21-07-2024",
+      "estado": "Resuelta"
+    },
+    {
+      "id": 6,
+      "dispositivo": "Sensor 6 - Compresor de Aire",
+      "tipo": "Electricidad",
+      "valor": 320,
+      "umbral": 300,
+      "fecha": "27-03-2024",
+      "estado": "No resuelta"
+    },
+    {
+      "id": 7,
+      "dispositivo": "Sensor 7 - Máquina CNC",
+      "tipo": "Electricidad",
+      "valor": 410,
+      "umbral": 400,
+      "fecha": "12-12-2023",
+      "estado": "Resuelta"
+    },
+    {
+      "id": 8,
+      "dispositivo": "Sensor 8 - Lavadora Industrial",
+      "tipo": "Agua",
+      "valor": 110,
+      "umbral": 100,
+      "fecha": "22-04-2024",
+      "estado": "No resuelta"
+    },
+    {
+      "id": 9,
+      "dispositivo": "Sensor 9 - Sistema de Refrigeración",
+      "tipo": "Electricidad",
+      "valor": 450,
+      "umbral": 430,
+      "fecha": "29-06-2024",
+      "estado": "Resuelta"
+    },
+    {
+      "id": 10,
+      "dispositivo": "Sensor 10 - Máquina de Corte",
+      "tipo": "Electricidad",
+      "valor": 470,
+      "umbral": 450,
+      "fecha": "2023-06-03",
+      "estado": "No resuelta"
+    }
   ]
 }

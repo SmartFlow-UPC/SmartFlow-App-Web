@@ -12,6 +12,9 @@ import CaracteristicasComponent from "../public/pages/caracteristicas.component.
 import BeneficiosComponent from "../public/pages/beneficios.component.vue";
 import TestimoniosComponent from "../public/pages/testimonios.component.vue";
 import RegistroManagementComponent from "../registros/pages/registro-management.component.vue";
+import HistorialAlarmas from "../alarmas/pages/HistorialAlarmas.component.vue";
+import ProduccionMonitoreo from "../Produccion/pages/ProduccionMonitoreo.vue";
+import Login from "../components/login.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -19,9 +22,12 @@ const router = createRouter({
         { path: '/home',    component: HomeComponent, meta: { title: 'Home' } },
         //{ path: '/tutorials', component: TutorialManagementComponent, meta: { title: 'Tutorials' } },
         { path: '/registros', component: RegistroManagementComponent, meta: { title: 'Registros' } },
-        { path: '/caracteristicas', component: CaracteristicasComponent, meta: { title: 'Caracteristicas' } },
-        { path: '/beneficios', component: BeneficiosComponent, meta: { title: 'Beneficios' } },
+        { path: '/alarmas', component: HistorialAlarmas, meta: { title: 'Alarmas' } },
+        { path: '/login', component: Login, meta: { title: 'Login' } },
+        { path: '/contacto', component: CaracteristicasComponent, meta: { title: 'Contactos' } },
+        { path: '/planes', component: BeneficiosComponent, meta: { title: 'Planes' } },
         { path: '/testimonios', component: TestimoniosComponent, meta: { title: 'Testimonios' } },
+        { path: '/produccion', component: ProduccionMonitoreo, meta: { title: 'Produccion' } },
         { path: '/about',   component: AboutComponent, meta: { title: 'About us' } },
         { path: '/',        redirect: '/home' },
     ],
@@ -37,3 +43,4 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+
