@@ -1,6 +1,7 @@
 <template>
   <pv-toast></pv-toast>
-  <header>
+
+  <header v-if="!isLoginPage">
     <pv-toolbar class="bg-primary" fixed>
       <template #start>
         <pv-button class="p-button-text text-white" icon="pi pi-bars" @click="toggleDrawer" />
@@ -13,15 +14,10 @@
           </router-link>
         </div>
       </template>
-      <template #end>
-        <router-link v-slot="{ navigate, href }" to="/login" custom>
-          <pv-button :href="href" class="p-button-text text-white" @click="navigate">Login</pv-button>
-        </router-link>
-      </template>
     </pv-toolbar>
   </header>
 
-  <pv-sidebar v-model:visible="drawer" :modal="true" :dismissable="true" :showCloseIcon="true" class="p-sidebar-sm">
+  <pv-sidebar v-if="!isLoginPage" v-model:visible="drawer" :modal="true" :dismissable="true" :showCloseIcon="true" class="p-sidebar-sm">
     <template #header>
       <h2>Menu</h2>
     </template>
@@ -36,11 +32,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import {ref, watch} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 const drawer = ref(false)
+
+const isLoginPage = ref(route.path === '/login')
+
+watch(
+    () => route.path,
+    (newPath) => {
+      isLoginPage.value = newPath === '/login'
+    }
+)
 
 const navItems = [
   { label: 'Home', to: '/home' },
@@ -48,7 +54,7 @@ const navItems = [
   { label: 'Planes', to: '/planes' },
   { label: 'Testimonios', to: '/testimonios' },
   { label: 'About', to: '/about' },
-  { label: 'Produccion', to: '/produccion' },
+  { label: 'Producción', to: '/produccion' },
   { label: 'Registros', to: '/registros' },
   { label: 'Alarmas', to: '/alarmas' },
 ]
@@ -86,7 +92,8 @@ const toggleDrawer = () => {
 }
 
 .main-content {
-  padding-top: 4rem; /* Adjust based on your toolbar height */
+  padding-top: 4rem;
+  padding-left: 1rem;
 }
 
 @media (max-width: 768px) {

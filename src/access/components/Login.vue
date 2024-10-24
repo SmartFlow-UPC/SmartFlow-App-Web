@@ -21,7 +21,6 @@
                 <pv-input-text id="email" v-model="email" required type="email" />
                 <label for="email">Email</label>
               </pv-float-label><br><br>
-
             </div>
             <div class="p-field p-mb-3">
               <pv-float-label>
@@ -48,8 +47,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {ref, onMounted} from 'vue'  // Importa onMounted aquí
+import {useRouter} from 'vue-router'
+import {getUsers} from '../services/userService'
 
+const router = useRouter()
 const username = ref('')
 const email = ref('')
 const password = ref('')
@@ -57,13 +59,18 @@ const errorMessage = ref('')
 const isRegistering = ref(false)
 const users = ref([])
 const isLoggedIn = ref(false)
-const loggedInUser = ref('')
+
+// Cargar usuarios desde db.json cuando se monta el componente
+onMounted(async () => {
+  users.value = await getUsers()
+})
 
 const handleLogin = () => {
-  const userExists = users.value.find(user => user.username === username.value && user.password === password.value)
+  const userExists = users.value.find(user => user.email === username.value && user.password === password.value)
   if (userExists) {
     isLoggedIn.value = true
-    loggedInUser.value = username.value
+    console.log('Login exitoso, redirigiendo a /home')  // Verifica si esto se imprime
+    router.push('/home')  // Redirigir a /home
     clearForm()
   } else {
     errorMessage.value = 'Nombre de usuario o contraseña incorrectos.'
@@ -72,11 +79,11 @@ const handleLogin = () => {
 
 const handleRegister = () => {
   if (username.value && email.value && password.value) {
-    const userExists = users.value.find(user => user.username === username.value)
+    const userExists = users.value.find(user => user.email === email.value)
     if (userExists) {
-      errorMessage.value = 'El nombre de usuario ya está registrado.'
+      errorMessage.value = 'El correo electrónico ya está registrado.'
     } else {
-      users.value.push({ username: username.value, email: email.value, password: password.value })
+      users.value.push({name: username.value, email: email.value, password: password.value})
       alert('Registro exitoso!')
       toggleRegister()
     }
@@ -92,7 +99,8 @@ const toggleRegister = () => {
 
 const handleLogout = () => {
   isLoggedIn.value = false
-  loggedInUser.value = ''
+  localStorage.removeItem('isAuthenticated')  // Limpia el estado de autenticación
+  router.push('/login')
   clearForm()
 }
 

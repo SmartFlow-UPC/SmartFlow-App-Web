@@ -1,4 +1,35 @@
 {
+  "user": [
+    {
+      "id": 1,
+      "name": "John",
+      "lastname": "Doe",
+      "email": "daaa@example.com",
+      "password": "wadafa",
+      "start_date": "2023-01-01",
+      "finish_date": "2023-12-31",
+      "created_at": "2023-01-01T00:00:00Z",
+      "plan_id": 1
+    },
+    {
+      "id": 2,
+      "name": "Allan",
+      "lastname": "Mori",
+      "email": "Mori777@example.com",
+      "password": "Opensourcehastalamuerte",
+      "start_date": "2023-01-01",
+      "finish_date": "2023-12-31",
+      "created_at": "2023-01-01T00:00:00Z",
+      "plan_id": 1
+    },
+    {
+      "name": "Sebastian",
+      "lastname": "Silva",
+      "email": "svsilvat@gmail.com",
+      "password": "123456",
+      "id": 3
+    }
+  ],
   "tutorials": [
     {
       "id": 1,
@@ -57,7 +88,8 @@
       "id": 2,
       "title": "Consumo de luz enero",
       "description": "Registro del consumo de electricidad en el mes de enero",
-      "published": false
+      "alto": true,
+      "status": "Alto"
     },
     {
       "id": 3,
