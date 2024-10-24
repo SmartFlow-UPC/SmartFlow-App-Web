@@ -7,6 +7,7 @@ export const getUsers = async () => {
     } catch (error) {
         console.error('Error al obtener los usuarios:', error);
         return [];
+        // cambio
     }
 };
 
