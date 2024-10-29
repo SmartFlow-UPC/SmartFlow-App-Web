@@ -4,36 +4,43 @@
  * @docs: https://router.vuejs.org/
  */
 
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue";
 import AboutComponent from "../public/pages/about.component.vue";
-// TutorialManagementComponent from "../learning/pages/tutorial-management.component.vue";
 import CaracteristicasComponent from "../public/pages/caracteristicas.component.vue";
 import BeneficiosComponent from "../public/pages/beneficios.component.vue";
 import TestimoniosComponent from "../public/pages/testimonios.component.vue";
 import RegistroManagementComponent from "../registros/pages/registro-management.component.vue";
+import ControlManagementComponent from "../control/pages/control-management.component.vue";
+
+const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
+
+const routes = [
+    { path: '/home', name: 'Home', component: HomeComponent, meta: { requiresAuth: true } },
+    { path: '/registros', component: RegistroManagementComponent, meta: { title: 'Registros', requiresAuth: true } },
+    { path: '/control', component: ControlManagementComponent, meta: { title: 'Control', requiresAuth: true } },
+    { path: '/contacto', component: CaracteristicasComponent, meta: { title: 'Contactos' } },
+    { path: '/planes', component: BeneficiosComponent, meta: { title: 'Planes' } },
+    { path: '/testimonios', component: TestimoniosComponent, meta: { title: 'Testimonios' } },
+    { path: '/about', component: AboutComponent, meta: { title: 'About us' } },
+    { path: '/', redirect: '/login' }, // Redirigir a login como ruta inicial
+    { path: '/:catchAll(.*)', redirect: '/login' }, // Redirige cualquier ruta no encontrada al login
+];
 
 const router = createRouter({
     history: createWebHistory(),
-    routes: [
-        { path: '/home',    component: HomeComponent, meta: { title: 'Home' } },
-        //{ path: '/tutorials', component: TutorialManagementComponent, meta: { title: 'Tutorials' } },
-        { path: '/registros', component: RegistroManagementComponent, meta: { title: 'Registros' } },
-        { path: '/caracteristicas', component: CaracteristicasComponent, meta: { title: 'Caracteristicas' } },
-        { path: '/beneficios', component: BeneficiosComponent, meta: { title: 'Beneficios' } },
-        { path: '/testimonios', component: TestimoniosComponent, meta: { title: 'Testimonios' } },
-        { path: '/about',   component: AboutComponent, meta: { title: 'About us' } },
-        { path: '/',        redirect: '/home' },
-    ],
+    routes
 });
 
 /**
- * Set Business name as prefix for each page title
+ * Middleware de Vue Router para verificar autenticación antes de cada ruta
  */
 router.beforeEach((to, from, next) => {
-    let baseTitle = 'Smart Flow';
-    document.title = `${baseTitle} | ${to.meta['title']}`;
-    next();
-});
+    if (to.meta.requiresAuth && !isAuthenticated) {
+        next('/login')  // Redirige a login si no está autenticado
+    } else {
+        next()  // Permite continuar si todo está bien
+    }
+})
 
 export default router;
