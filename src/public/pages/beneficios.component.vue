@@ -1,90 +1,146 @@
 <template>
-  <div class="benefits-container">
-    <h1 class="title">Beneficios</h1>
-
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <i class="fas fa-dollar-sign"></i>
-        <h3>Reduce costos operativos</h3>
-        <p>Optimiza el uso de recursos y reduce gastos innecesarios, ayudando a que tu negocio sea más rentable.</p>
-      </div>
-
-      <div class="benefit-card">
-        <i class="fas fa-leaf"></i>
-        <h3>Mejora la eficiencia energética</h3>
-        <p>Identifica áreas de mejora para reducir el consumo de energía y aumentar la sostenibilidad.</p>
-      </div>
-
-      <div class="benefit-card">
-        <i class="fas fa-cogs"></i>
-        <h3>Optimiza el rendimiento de tus máquinas</h3>
-        <p>Mantén tus equipos funcionando en su punto óptimo para evitar tiempos de inactividad y fallas.</p>
-      </div>
-
-      <div class="benefit-card">
-        <i class="fas fa-chart-bar"></i>
-        <h3>Toma decisiones basadas en datos reales</h3>
-        <p>Utiliza información precisa para optimizar procesos y mejorar la gestión de tu negocio.</p>
+  <section id="subscriptions" class="subscriptions-container">
+    <h2 class="title">Planes de Suscripción</h2>
+    <div class="subscription-grid">
+      <div v-for="plan in subscriptionPlans" :key="plan.name" :class="['subscription-card', { featured: plan.featured }]">
+        <h3>{{ plan.name }}</h3>
+        <p class="price">{{ plan.price }}</p>
+        <ul>
+          <li v-for="feature in plan.features" :key="feature">{{ feature }}</li>
+        </ul>
+        <a :href="plan.ctaLink" class="cta-button">{{ plan.ctaText }}</a>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
-<script>
-export default {
-  name: "beneficios",
-  title: "Beneficios"
-}
+<script setup>
+const subscriptionPlans = [
+  {
+    name: "Plan Básico",
+    price: "$99/mes",
+    features: [
+      "Monitoreo de hasta 5 dispositivos",
+      "Informes mensuales",
+      "Soporte por correo electrónico"
+    ],
+    ctaLink: "#",
+    ctaText: "Elegir Plan",
+    featured: false
+  },
+  {
+    name: "Plan Pro",
+    price: "$199/mes",
+    features: [
+      "Monitoreo de hasta 20 dispositivos",
+      "Informes semanales",
+      "Soporte prioritario 24/7",
+      "Análisis predictivo"
+    ],
+    ctaLink: "#",
+    ctaText: "Elegir Plan",
+    featured: true
+  },
+  {
+    name: "Plan Empresarial",
+    price: "Personalizado",
+    features: [
+      "Monitoreo ilimitado de dispositivos",
+      "Informes personalizados",
+      "Soporte dedicado",
+      "Integración con sistemas existentes"
+    ],
+    ctaLink: "#",
+    ctaText: "Contactar",
+    featured: false
+  }
+]
 </script>
 
 <style scoped>
-.benefits-container {
+.subscriptions-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 4rem 2rem;
   text-align: center;
 }
 
 .title {
   font-size: 2.5rem;
   color: #333;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
-.benefits-grid {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+.subscription-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
-.benefit-card {
-  background-color: #f5f5f5;
-  padding: 1.5rem;
+.subscription-card {
+  background-color: #ffffff;
   border-radius: 8px;
-  width: 300px;
-  margin: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.benefit-card:hover {
-  transform: scale(1.05);
+.subscription-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.benefit-card i {
-  font-size: 3rem;
-  color: #4caf50;
+.subscription-card.featured {
+  background-color: #e6f7ff;
+  border: 2px solid #3f51b5;
 }
 
-.benefit-card h3 {
-  margin-top: 1rem;
-  font-size: 1.5rem;
+.subscription-card h3 {
+  font-size: 1.8rem;
   color: #333;
+  margin-bottom: 1rem;
 }
 
-.benefit-card p {
-  color: #777;
-  margin-top: 0.5rem;
+.price {
+  font-size: 2rem;
+  color: #3f51b5;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #3f51b5;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
   font-size: 1.1rem;
+  transition: background-color 0.3s;
+  align-self: center;
+}
+
+.cta-button:hover {
+  background-color: #007acc;
+}
+
+@media (max-width: 768px) {
+  .subscription-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
