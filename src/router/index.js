@@ -14,6 +14,8 @@ import RegistroManagementComponent from "../registros/pages/registro-management.
 import HistorialAlarmas from "../alarmas/pages/HistorialAlarmas.component.vue";
 import ProduccionMonitoreo from "../Produccion/pages/ProduccionMonitoreo.vue";
 import Login from "../access/components/Login.vue";
+import ControlManagementComponent from "../control/pages/control-management.component.vue";
+import ConsumosManagementComponent from "../consumos/pages/consumos-management.component.vue";
 
 const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
 
@@ -21,6 +23,8 @@ const routes = [
     { path: '/login', name: 'Login', component: Login, meta: { title: 'Login' } },
     { path: '/home', name: 'Home', component: HomeComponent, meta: { requiresAuth: true } },
     { path: '/registros', component: RegistroManagementComponent, meta: { title: 'Registros', requiresAuth: true } },
+    { path: '/control', component: ControlManagementComponent, meta: { title: 'Control', requiresAuth: true } },
+    { path: '/consumos', component: ConsumosManagementComponent, meta: { title: 'Consumos', requiresAuth: true } },
     { path: '/alarmas', component: HistorialAlarmas, meta: { title: 'Alarmas', requiresAuth: true } },
     { path: '/contacto', component: CaracteristicasComponent, meta: { title: 'Contactos' } },
     { path: '/planes', component: BeneficiosComponent, meta: { title: 'Planes' } },

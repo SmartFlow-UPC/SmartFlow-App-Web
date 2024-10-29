@@ -56,6 +56,8 @@ const navItems = [
   { label: 'About', to: '/about' },
   { label: 'Producción', to: '/produccion' },
   { label: 'Registros', to: '/registros' },
+  { label: 'Control', to: '/control' },
+  { label: 'Consumos', to: '/consumos' },
   { label: 'Alarmas', to: '/alarmas' },
 ]
 
