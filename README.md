@@ -1,7 +1,7 @@
-# ACME Learning Center Web Application
+# SmartFlow Web App
 
 ## Summary
-ACME Learning Center Application, illustrating REST client with axios on a simulated API with json-server, using Vue Framework and PrimeVue UI Component Library. The application also shows how to support in-app navigation routing.
+Smart flow: Ahorra luz, agua y mejora tu negocio con nuestro programa para comerte al mundo.
 
 ## Features
 - REST client with axios
@@ -10,7 +10,7 @@ ACME Learning Center Application, illustrating REST client with axios on a simul
 - In-app navigation routing
 - Reusable components
 
-## Dependencies
+## Dependencias
 - Vue
 - Axios
 - PrimeVue
@@ -18,10 +18,11 @@ ACME Learning Center Application, illustrating REST client with axios on a simul
 - json-server
 
 ## Mock API Start
-Write the following commands in the terminal to start the mock API server.
+Escribe los siguientes comandas y para iniciar el JSON server.
 ```bash
 cd server
 sh start.sh
+json-server --watch db.json
 ```
 
 
