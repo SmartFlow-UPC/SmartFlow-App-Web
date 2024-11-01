@@ -17,8 +17,6 @@ import Login from "../access/components/Login.vue";
 import ControlManagementComponent from "../control/pages/control-management.component.vue";
 import ConsumosManagementComponent from "../consumos/pages/consumos-management.component.vue";
 
-const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
-
 const routes = [
     { path: '/login', name: 'Login', component: Login, meta: { title: 'Login' } },
     { path: '/home', name: 'Home', component: HomeComponent, meta: { requiresAuth: true } },
@@ -44,10 +42,11 @@ const router = createRouter({
  * Middleware de Vue Router para verificar autenticación antes de cada ruta
  */
 router.beforeEach((to, from, next) => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
     if (to.meta.requiresAuth && !isAuthenticated) {
-        next('/login')  // Redirige a login si no está autenticado
+        next('/login')
     } else {
-        next()  // Permite continuar si todo está bien
+        next()
     }
 })
 
