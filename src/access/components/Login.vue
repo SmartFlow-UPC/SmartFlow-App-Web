@@ -39,7 +39,10 @@
         </div>
         <div v-else>
           <p class="p-text-center p-mb-3">Has iniciado sesión como {{ loggedInUser }}</p>
-          <pv-button label="Cerrar Sesión" @click="handleLogout" class="p-button-danger p-mt-3" />
+          <div class="button-container">
+            <pv-button label="Continuar" @click="goToHome" class="p-button-success p-mt-3" />
+            <pv-button label="Cerrar Sesión" @click="handleLogout" class="p-button-danger p-mt-3" />
+          </div>
         </div>
       </template>
     </pv-card>
@@ -47,9 +50,9 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue'  // Importa onMounted aquí
-import {useRouter} from 'vue-router'
-import {getUsers} from '../services/userService'
+import { ref, onMounted, nextTick } from 'vue'
+import { useRouter } from 'vue-router'
+import { getUsers } from '../services/userService'
 
 const router = useRouter()
 const username = ref('')
@@ -59,21 +62,35 @@ const errorMessage = ref('')
 const isRegistering = ref(false)
 const users = ref([])
 const isLoggedIn = ref(false)
+const loggedInUser = ref('')
 
 // Cargar usuarios desde db.json cuando se monta el componente
 onMounted(async () => {
   users.value = await getUsers()
 })
 
-const handleLogin = () => {
+const handleLogin = async () => {
   const userExists = users.value.find(user => user.email === username.value && user.password === password.value)
   if (userExists) {
-    isLoggedIn.value = true
-    console.log('Login exitoso, redirigiendo a /home')  // Verifica si esto se imprime
-    router.push('/home')  // Redirigir a /home
-    clearForm()
+    try {
+      isLoggedIn.value = true
+      loggedInUser.value = userExists.name
+      localStorage.setItem('isAuthenticated', 'true')
+      localStorage.setItem('user', JSON.stringify(userExists))
+    } catch (error) {
+      console.error('Error durante el login:', error)
+      errorMessage.value = 'Error al iniciar sesión. Por favor, intente de nuevo.'
+    }
   } else {
     errorMessage.value = 'Nombre de usuario o contraseña incorrectos.'
+  }
+}
+
+const goToHome = async () => {
+  try {
+    await router.push('/home')
+  } catch (error) {
+    console.error('Error al navegar a home:', error)
   }
 }
 
@@ -99,7 +116,9 @@ const toggleRegister = () => {
 
 const handleLogout = () => {
   isLoggedIn.value = false
-  localStorage.removeItem('isAuthenticated')  // Limpia el estado de autenticación
+  loggedInUser.value = ''
+  localStorage.removeItem('isAuthenticated')
+  localStorage.removeItem('user')
   router.push('/login')
   clearForm()
 }
@@ -133,5 +152,11 @@ const clearForm = () => {
 
 .p-clickable:hover {
   text-decoration: underline;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 </style>
