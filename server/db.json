@@ -193,6 +193,15 @@
       "potencia_total": 300,
       "encendido": true,
       "status": "Encendido"
+    },
+    {
+      "id": 0,
+      "aparato": "Luces LED",
+      "cantidad": "10",
+      "potencia_watts": "100",
+      "potencia_total": 1000,
+      "encendido": false,
+      "status": "Apagado"
     }
   ],
   "control": [
